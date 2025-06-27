@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://qtj3482f8fn6"]
+
+[ext_resource type="PackedScene" uid="uid://6wqt0q3jfbli" path="res://Scenes/DemoScene01.tscn" id="1_60d2e"]
+[ext_resource type="Script" uid="uid://brcpof302o0px" path="res://Scripts/FPSdisplay.gd" id="3_5ysw3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ysw3"]
+
+[node name="PostFx" type="SubViewportContainer"]
+material = SubResource("ShaderMaterial_5ysw3")
+custom_minimum_size = Vector2(640, 480)
+stretch = true
+stretch_shrink = 2
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+msaa_3d = 3
+size = Vector2i(320, 240)
+render_target_update_mode = 4
+
+[node name="DemoScene01" parent="SubViewport" instance=ExtResource("1_60d2e")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 22.0
+offset_top = 20.0
+offset_right = 110.0
+offset_bottom = 43.0
+text = "FPS Display"
+script = ExtResource("3_5ysw3")
