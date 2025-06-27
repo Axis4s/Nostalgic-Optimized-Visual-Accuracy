@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://6wqt0q3jfbli"]
+[gd_scene load_steps=7 format=3 uid="uid://6wqt0q3jfbli"]
 
 [ext_resource type="Script" uid="uid://c7mwefgbq1cbj" path="res://Scripts/SimpleCamera.gd" id="1_eqin7"]
 [ext_resource type="Shader" uid="uid://dxe5h7e6dvy62" path="res://Shaders/Gouraud/BasicDirectionalGouraud.gdshader" id="2_ipfvr"]
@@ -12,14 +12,20 @@ ring_segments = 8
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wheo7"]
 render_priority = 0
 shader = ExtResource("2_ipfvr")
-shader_parameter/light_direction = Vector3(0, -0.616349, 0.787473)
+shader_parameter/light_directions = PackedVector3Array(0.768068, -0.234084, -0.59605, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/light_colors = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/light_intensities = PackedFloat32Array(1, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/active_light_count = 1
 shader_parameter/surface_color = Color(1, 1, 1, 1)
-shader_parameter/light_color = Color(1, 1, 1, 1)
 shader_parameter/ambient_color = Color(0.421087, 0.184429, 0.21466, 1)
-shader_parameter/light_intensity = 1.0
-shader_parameter/ambient_strength = 0.649
+shader_parameter/ambient_strength = 0.0
 shader_parameter/roughness = 0.0
 shader_parameter/terminator_offset = 0.0
+
+[sub_resource type="Environment" id="Environment_wheo7"]
+background_mode = 1
+background_color = Color(0.143663, 0.141243, 0.24576, 1)
+ambient_light_source = 2
 
 [node name="DemoScene01" type="Node3D"]
 
@@ -27,14 +33,14 @@ shader_parameter/terminator_offset = 0.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 script = ExtResource("1_eqin7")
 
-[node name="Donut" type="MeshInstance3D" parent="." node_paths=PackedStringArray("directional_light")]
+[node name="Donut" type="MeshInstance3D" parent="."]
 mesh = SubResource("TorusMesh_eqin7")
 surface_material_override/0 = SubResource("ShaderMaterial_wheo7")
 script = ExtResource("3_wheo7")
-directional_light = NodePath("../DirectionalLight3D")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wheo7")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.787473, 0.616349, 0, -0.616349, -0.787473, 0.114455, 1.38237, 0)
-editor_only = true
-directional_shadow_mode = 0
-sky_mode = 1
+transform = Transform3D(0.560332, -0.309999, -0.768068, 0.696265, 0.678543, 0.234084, 0.448602, -0.665944, 0.59605, 0, 0, 0)
+light_color = Color(0, 0.605182, 0.662912, 1)

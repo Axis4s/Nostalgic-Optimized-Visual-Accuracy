@@ -21,26 +21,26 @@ void vertex() {
     // Transform to world space
     vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
     vec3 world_normal = normalize((MODEL_MATRIX * vec4(NORMAL, 0.0)).xyz);
-    
+
     // Light direction and distance
     vec3 light_dir = normalize(light_position - world_pos);
     float distance = length(light_position - world_pos);
-    
+
     // Ambient component
     vec3 ambient = ambient_strength * ambient_color;
-    
+
     // Diffuse component with terminator offset
     float ndotl = dot(world_normal, light_dir);
     float biased_ndotl = clamp(ndotl + terminator_offset, 0.0, 1.0);
     vec3 diffuse = biased_ndotl * light_color * light_intensity;
-    
+
     // Apply roughness softening
     vec3 soft_diffuse = light_color * light_intensity * 0.1;
     diffuse = mix(diffuse, soft_diffuse, roughness * 0.3);
-    
+
     // Distance attenuation
     float attenuation = 1.0 / (1.0 + 0.09 * distance + 0.032 * distance * distance);
-    
+
     // Combine lighting components
     final_lighting = ambient + diffuse * attenuation;
 }
