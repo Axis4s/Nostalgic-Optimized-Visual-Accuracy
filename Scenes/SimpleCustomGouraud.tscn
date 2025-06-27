@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://6wqt0q3jfbli"]
+
+[ext_resource type="Script" uid="uid://c7mwefgbq1cbj" path="res://Scripts/SimpleCamera.gd" id="1_eqin7"]
+[ext_resource type="Shader" uid="uid://dxe5h7e6dvy62" path="res://Shaders/Gouraud/BasicDirectionalGouraud.gdshader" id="2_ipfvr"]
+[ext_resource type="Script" uid="uid://bavh2ites36as" path="res://Scripts/MeshDirectionalLight.gd" id="3_wheo7"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_eqin7"]
+inner_radius = 0.395
+rings = 16
+ring_segments = 8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wheo7"]
+render_priority = 0
+shader = ExtResource("2_ipfvr")
+shader_parameter/light_direction = Vector3(0, -0.616349, 0.787473)
+shader_parameter/surface_color = Color(1, 1, 1, 1)
+shader_parameter/light_color = Color(1, 1, 1, 1)
+shader_parameter/ambient_color = Color(0.421087, 0.184429, 0.21466, 1)
+shader_parameter/light_intensity = 1.0
+shader_parameter/ambient_strength = 0.649
+shader_parameter/roughness = 0.0
+shader_parameter/terminator_offset = 0.0
+
+[node name="DemoScene01" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+script = ExtResource("1_eqin7")
+
+[node name="Donut" type="MeshInstance3D" parent="." node_paths=PackedStringArray("directional_light")]
+mesh = SubResource("TorusMesh_eqin7")
+surface_material_override/0 = SubResource("ShaderMaterial_wheo7")
+script = ExtResource("3_wheo7")
+directional_light = NodePath("../DirectionalLight3D")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.787473, 0.616349, 0, -0.616349, -0.787473, 0.114455, 1.38237, 0)
+editor_only = true
+directional_shadow_mode = 0
+sky_mode = 1

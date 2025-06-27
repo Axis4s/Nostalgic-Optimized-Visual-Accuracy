@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://qtj3482f8fn6"]
 
-[ext_resource type="PackedScene" uid="uid://6wqt0q3jfbli" path="res://Scenes/DemoScene01.tscn" id="1_60d2e"]
+[ext_resource type="PackedScene" uid="uid://6wqt0q3jfbli" path="res://Scenes/SimpleCustomGouraud.tscn" id="1_60d2e"]
 [ext_resource type="Script" uid="uid://brcpof302o0px" path="res://Scripts/FPSdisplay.gd" id="3_5ysw3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5ysw3"]

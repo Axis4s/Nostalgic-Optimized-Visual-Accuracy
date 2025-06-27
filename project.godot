@@ -13,7 +13,7 @@ config_version=5
 config/name="Nostalgic-Optimized-Visual-Accuracy"
 run/main_scene="uid://qtj3482f8fn6"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://Textures/icon.svg"
 
 [display]
 
@@ -29,7 +29,8 @@ folder_colors={
 "res://Mesh/": "gray",
 "res://Scenes/": "red",
 "res://Scripts/": "yellow",
-"res://Shaders/": "teal"
+"res://Shaders/": "teal",
+"res://Textures/": "gray"
 }
 
 [input]
