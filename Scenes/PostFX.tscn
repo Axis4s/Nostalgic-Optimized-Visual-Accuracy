@@ -1,9 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://qtj3482f8fn6"]
+[gd_scene load_steps=5 format=3 uid="uid://qtj3482f8fn6"]
 
+[ext_resource type="Shader" uid="uid://cc6s67frfgtyr" path="res://Shaders/PostFX/N64-Post-V2.gdshader" id="1_5ysw3"]
 [ext_resource type="PackedScene" uid="uid://6wqt0q3jfbli" path="res://Scenes/SimpleCustomGouraud.tscn" id="1_60d2e"]
 [ext_resource type="Script" uid="uid://brcpof302o0px" path="res://Scripts/FPSdisplay.gd" id="3_5ysw3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5ysw3"]
+shader = ExtResource("1_5ysw3")
+shader_parameter/virtual_resolution = Vector2(320, 240)
+shader_parameter/color_bitdepth = 5
+shader_parameter/dither_strength = 1.0
+shader_parameter/use_magic_matrix = true
+shader_parameter/enable_dedithering = true
+shader_parameter/dedither_strength = 1.0
+shader_parameter/enable_480i_upscale = true
+shader_parameter/scanline_intensity = 0.05
 
 [node name="PostFx" type="SubViewportContainer"]
 material = SubResource("ShaderMaterial_5ysw3")
